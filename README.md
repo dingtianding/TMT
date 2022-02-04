@@ -1,56 +1,55 @@
-JS Project Proposal: Conway's Game of Life with Variations
+JS Project Proposal: Tesla, Media and Twits(TMT)
+
 --Background--
-Conway's Game of Life is a classic example of the concept of cellular automata. The original GoL plays out on a rectangular grid. Each cell on the grid is either dead or alive when the game begins. On the next iteration of the game (called a "generation") the cells follow these rules:
+Tesla, Media and Twits(TMT) is a data visualization project that creates a stock chart of a popular stock, and attempts to analyze direct and indirect relationship between current events as well as the CEO's twitter acitivty. The site will visualize Stock prices, and it will collect list of major events from media and Elon Musk Twits. The graph will be marked differently according the type of current events and there will be filter for events types. It will create a ranking of the most significant events while incorporating some simple price analysis.
 
-1) Any live cell with exactly 2 or 3 live neighbors* stays alive; otherwise, it dies 2) Any dead cell with exactly 3 neighbors will come to life; otherwise, it remains dead
-
-* A cell's neighbors are the 8 cells that immediately surround it (fewer when you're at an edge or corner)
-
-There are many variations on the GoL. This simulation will incorporate several of those variations, outlined in the Functionality & MVP and Bonus Features sections.
 
 --Functionality & MVPs--
-With this Conway's Game of Life simulator, users will be able to:
+With the TMT, users will be able to:
 
-Start, pause, and reset the game board
-Select squares to be alive in the initial state
-Choose from preset demo initial states
-Toggle between square, triangular and hexagonal grids with corresponding rule sets
+1. Observe Tesla's stock price in chart over a period of time
+2. Select the type of factors(events or twits) to be marked up on the chart
+3. Rank the biggest gainer and loser dates and link to the events or twits on the dates.
+
 In addition, this project will include:
 
-An About modal describing the background and rules of the game
+An About modal describing the consideration when determining current events's impact on the stock price.
 A production README
+
 --Wireframes--
 wireframe
 
 Nav links include links to this project's Github repo, my LinkedIn and AngelList, and the About modal.
-Game controls will include Start, Stop, and Reset buttons as well as a slider to control the speed.
-On the right, there will be clickable rectangles used to toggle between color schemes.
-On the left, three clickable shapes will be used to toggle between the types of grids available (Bonus)
-Additionally, a drop-down will be added to the Controls to toggle between different rule sets (Bonus).
+Stock Filter will include Current Events(may be sub-groups), Major Twits, and Reset buttons to reset the filter.
+On the right, there will be clickable rectangles used to toggle between light and dark mode(Robinhood's two theme).
+On the left, three clickable shapes will be used to toggle between the types of stock graphs and maybe additional stock prices(Daily High, Daily Low, Open, Close, etc) (Bonus)
+
 
 --Technologies, Libraries, APIs--
 This project will be implemented with the following technologies:
 
-The Canvas API to render the game board
-Webpack and Babel to bundle and transpile the source JavaScript code
+The IEX Cloud API to pull market datas for the stock
+The Chart.js and D3 API to render the stock chart
+Webpack to bundle and transpile the source JavaScript code
 npm to manage project dependencies
 
 --Implementation Timeline--
 NB:
 
-Friday Afternoon & Weekend: Setup project, including getting webpack up and running. Get canvas to show up on the screen, and spend time getting comfortable with the Canvas API. Create Board and Cell classes. Get a grid rendered to the canvas reflecting the initial state of the cells.
+Friday Afternoon & Weekend: Setup project, including getting webpack up and running. Get sample charts to show up on the screen with chart.js and d3. Spend time getting comfortable with the IEX Cloud API, and try to pull some market data in order to decide what to include on the stock page.
 
-Monday: Dedicate this day toward implementing the underlying logic of Conway's Game of Life. Ensure that I can advance a generation and all the cells update appropriately. If time, make sure this is all rendered correctly on the canvas.
+Monday: Dedicate this day toward implementing the Market Data properly on the chart visualization, and add any additional relative market data. Implement a professional visual of the chart and make it pretty.
 
-Tuesday: If I didn't get to it already, get the cells correctly rendered to the canvas. Make sure they rerender correctly when I advance a generation. Then, focus on user controls: start, stop, reset, and clicking on cells.
+Tuesday: Compile list of current events related to the stock with maybe a News Search API and CEO twits. Create link to relevent News article or specific twits and create mark up on the chart.
 
-Wednesday: Finish implementing user controls, and focus on styling, as well as implementing the different color schemes and nav links. If time, start on bonuses.
+Wednesday: Finish implementing current event's mark up if I have not finished. Then to create a page to rank the Biggest Gainer and Loser dates and the respective events that has occured.
 
 Thursday Morning: Deploy to GitHub pages. If time, rewrite this proposal as a production README.
 
 -- Bonus features --
-There are many directions this cellular automata engine could eventually go. Some anticipated updates are:
+There are many directions this stock visualization could eventually go. Some anticipated updates are:
 
-Add options for different grid types
-Add multiple choices for starting states that are interesting
-Explore multi-state versions of the game, such as the ones outlined here
+Add options for other stocks and maybe even to pull CyptoCoins Prices
+Automatically dentify major increase or major decrease in price.(+/-10%)
+Filter for current events that occured on those dates.
+Set up criteria for stock's risk rating similar to S&P and Moody's. 
