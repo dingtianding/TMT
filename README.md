@@ -18,7 +18,9 @@ A production README
 
 --Wireframes--
 wireframe
-https://wireframe.cc/xtGwTA
+![wireframe](/assets/images/WireFrame.jpeg)
+
+
 
 Nav links include links to this project's Github repo, my LinkedIn and AngelList, and the About modal.
 Stock Filter will include Current Events(may be sub-groups), Major Tweets, and Reset buttons to reset the filter.
