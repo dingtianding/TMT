@@ -18,6 +18,7 @@ A production README
 
 --Wireframes--
 wireframe
+https://wireframe.cc/xtGwTA
 
 Nav links include links to this project's Github repo, my LinkedIn and AngelList, and the About modal.
 Stock Filter will include Current Events(may be sub-groups), Major Tweets, and Reset buttons to reset the filter.
@@ -29,7 +30,7 @@ On the left, three clickable shapes will be used to toggle between the types of 
 This project will be implemented with the following technologies:
 
 The IEX Cloud API to pull market datas for the stock
-The Chart.js and D3 API to render the stock chart
+The Chart.js API to render the stock chart
 Webpack to bundle and transpile the source JavaScript code
 npm to manage project dependencies
 
