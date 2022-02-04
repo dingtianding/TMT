@@ -1,15 +1,15 @@
-JS Project Proposal: Tesla, Media and Twits(TMT)
+JS Project Proposal: Tesla, Media and Tweets(TMT)
 
 --Background--
-Tesla, Media and Twits(TMT) is a data visualization project that creates a stock chart of a popular stock, and attempts to analyze direct and indirect relationship between current events as well as the CEO's twitter acitivty. The site will visualize Stock prices, and it will collect list of major events from media and Elon Musk Twits. The graph will be marked differently according the type of current events and there will be filter for events types. It will create a ranking of the most significant events while incorporating some simple price analysis.
+Tesla, Media and Tweets(TMT) is a data visualization project that creates a stock chart of a popular stock, and attempts to analyze direct and indirect relationship between current events as well as the CEO's twitter acitivty. The site will visualize Stock prices, and it will collect list of major events from media and Elon Musk Tweets. The graph will be marked differently according the type of current events and there will be filter for events types. It will create a ranking of the most significant events while incorporating some simple price analysis.
 
 
 --Functionality & MVPs--
 With the TMT, users will be able to:
 
 1. Observe Tesla's stock price in chart over a period of time
-2. Select the type of factors(events or twits) to be marked up on the chart
-3. Rank the biggest gainer and loser dates and link to the events or twits on the dates.
+2. Select the type of factors(events or tweets) to be marked up on the chart
+3. Rank the biggest gainer and loser dates and link to the events or tweets on the dates.
 
 In addition, this project will include:
 
@@ -20,7 +20,7 @@ A production README
 wireframe
 
 Nav links include links to this project's Github repo, my LinkedIn and AngelList, and the About modal.
-Stock Filter will include Current Events(may be sub-groups), Major Twits, and Reset buttons to reset the filter.
+Stock Filter will include Current Events(may be sub-groups), Major Tweets, and Reset buttons to reset the filter.
 On the right, there will be clickable rectangles used to toggle between light and dark mode(Robinhood's two theme).
 On the left, three clickable shapes will be used to toggle between the types of stock graphs and maybe additional stock prices(Daily High, Daily Low, Open, Close, etc) (Bonus)
 
@@ -40,7 +40,7 @@ Friday Afternoon & Weekend: Setup project, including getting webpack up and runn
 
 Monday: Dedicate this day toward implementing the Market Data properly on the chart visualization, and add any additional relative market data. Implement a professional visual of the chart and make it pretty.
 
-Tuesday: Compile list of current events related to the stock with maybe a News Search API and CEO twits. Create link to relevent News article or specific twits and create mark up on the chart.
+Tuesday: Compile list of current events related to the stock with maybe a News Search API and CEO tweets. Create link to relevent News article or specific tweets and create mark up on the chart.
 
 Wednesday: Finish implementing current event's mark up if I have not finished. Then to create a page to rank the Biggest Gainer and Loser dates and the respective events that has occured.
 
