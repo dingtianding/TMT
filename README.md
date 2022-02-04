@@ -17,10 +17,7 @@ An About modal describing the consideration when determining current events's im
 A production README
 
 --Wireframes--
-wireframe
-![wireframe](/assets/images/WireFrame.jpeg)
-
-
+[Wireframe](docs/WireFrame.jpeg)
 
 Nav links include links to this project's Github repo, my LinkedIn and AngelList, and the About modal.
 Stock Filter will include Current Events(may be sub-groups), Major Tweets, and Reset buttons to reset the filter.
