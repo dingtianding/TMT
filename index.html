@@ -1,0 +1,120 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesla, Media and Tweets</title>
+    <h1>Stock Name: Tesla Inc (TSLA)</h1>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+</head>
+<body>
+    <canvas id="myChart" width="400" height="400"></canvas>
+    <script>
+        const xdates = [];
+        const yprices = [];
+        createChart();
+
+        async function createChart() {
+        const data = await getData();
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data.xs,
+                datasets: [{
+                    label: 'Tesla Stock Price in USD ($)',
+                    data: data.ys,
+                    fill: true,
+                    backgroundColor: 'rgba(0, 255, 0, .2)',
+                    borderColor: 'rgba(0, 100, 0, 1)',
+                    borderWidth: 1
+                    }
+                ]
+            },
+            plugins: [plugin],
+            options: {
+            scales: {
+            y: {
+                ticks: {
+                    // Include a dollar sign in the ticks
+                    callback: function(value, index, ticks) {
+                        return '$' + value;
+                    }
+                }
+            }
+        }
+    }
+        });
+    }
+    const plugin = {
+        id: 'custom_canvas_background_color',
+        beforeDraw: (chart) => {
+            const ctx = chart.canvas.getContext('2d');
+            ctx.save();
+            ctx.globalCompositeOperation = 'destination-over';
+            ctx.fillStyle = "rgba(0, 0, 0, 0.88)";
+            ctx.fillRect(0, 0, chart.width, chart.height);
+            ctx.restore();
+        }
+    };
+        //Data from https://finance.yahoo.com/quote/TSLA/history/
+        
+        getData();
+        async function getData(){
+            const xs = [];
+            const ys = [];
+            
+            const response = await fetch('TSLA.csv');
+            const data = await response.text();
+            console.log(data);
+
+            const table = data.split('\n').slice(1);
+            table.forEach(row => {
+                const columns = row.split(',');
+                const date = columns[0].slice(0, 7);
+                xs.push(date);
+                const open = columns[1];
+                ys.push(open)
+                console.log(date, open);
+            });
+            return { xs, ys }
+        }
+
+    </script>
+    <!-- <img src="" id="fetch" width="500"/>
+     -->
+    <!-- <script>
+        console.log('about to fetch');
+
+        catchWire()
+        .then(response => {
+            console.log('response');
+        })
+        .catch(error => {
+            console.error(error);
+        });
+
+        async function catchWire(){
+            const response = await fetch('images/WireFrame.jpeg');
+            const blob = await response.blob();
+            document.getElementById('fetch').src = URL.createObjectURL(blob);
+        }
+    </script> -->
+    <!-- <script>
+        console.log('about to fetch');
+        fetch('images/WireFrame.jpeg')
+        .then(response => {
+            console.log(response);
+            return response.blob();
+        })
+        .then(blob => {
+            console.log(blob);
+            document.getElementById('fetch').src = URL.createObjectURL(blob);
+        }).catch(error => {
+            console.error(error);
+        });
+    </script> -->
+    
+    
+</body>
+</html>

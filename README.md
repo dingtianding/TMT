@@ -31,6 +31,8 @@ This project will be implemented with the following technologies:
 
 The IEX Cloud API to pull market datas for the stock
 The Chart.js API to render the stock chart
+    -Chart.js also uses Fetch API for accessing and manipulating parts of the HTTP pipeline, and to create a synchronous functions
+    -Chart.js Use Canvas API to draw graphic in conjunction customize graph
 Webpack to bundle and transpile the source JavaScript code
 npm to manage project dependencies
 
