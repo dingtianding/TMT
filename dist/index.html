@@ -71,8 +71,8 @@
             ctx.restore();
         }
     };
-        //Data from https://finance.yahoo.com/quote/TSLA/history/
-        
+    
+
         getData();
         async function getData(){
             const xs = [];
@@ -80,7 +80,7 @@
             
             const response = await fetch('TSLA.csv');
             const data = await response.text();
-            // console.log(data);
+            
 
             const table = data.split('\n').slice(1);
             table.forEach(row => {
@@ -89,12 +89,45 @@
                 xs.push(date);
                 const open = columns[1];
                 ys.push(open)
-                // console.log(date, open);
+
             });
             return { xs, ys }
         }
 
     </script>
+
+      <script> 
+          const searchFrom = document.querySelector('.search');
+          const input = document.querySelector('.input');
+          const prices = document.querySelector('.prices');
+    
+          searchFrom.addEventListener('submit', retrieve)
+    
+          function retrieve(el){
+            if (input.value ===''){
+              alert('Please enter a stock!')
+              return
+            }
+            prices.innerHTML = ''
+            el.preventDefault()
+            const apiKey = 'd8c13c0a3ba84770b416e30869d97d6f'
+            let stock = input.value;
+            let url = `https://api.twelvedata.com/time_series?symbol=${stock}",EUR/USD,ETH/BTC:Huobi,TRP:TSX&interval=1day&apikey=${apiKey}
+    `
+    
+            fetch(url).then((res)=>{
+              return res.json()
+            }).then((data)=>{
+              console.log(data)
+              data.datetime.forEach(daily => {
+                console.log(daily, data.open)
+                
+              })
+            }).catch((error)=>{
+              console.log(error)
+            })
+          }
+        </script>
 
     
 
@@ -138,5 +171,6 @@
         })
       }
     </script>
+    
 </body>
 </html>
