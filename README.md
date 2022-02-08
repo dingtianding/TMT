@@ -17,7 +17,7 @@ An About modal describing the consideration when determining current events's im
 A production README
 
 --Wireframes--
-[Wireframe](https://github.com/dingtianding/JS_Project/blob/main/images/WireFrame.jpeg)
+[Wireframe](JS_Project/src/images/WireFrame.jpeg)
 
 
 Nav links include links to this project's Github repo, my LinkedIn and AngelList, and the About modal.
