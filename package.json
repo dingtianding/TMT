@@ -2,12 +2,14 @@
   "name": "JS_Project",
   "version": "1.0.0",
   "description": "JS Project Proposal: Tesla, Media and Tweets(TMT)",
-  "private": true,
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "webpack --watch --mode=development",
-    "build": "webpack --mode=production"
-  },
+  "main": "index.js",
+    "browserslist": [
+      "defaults"
+    ],
+    "scripts": {
+      "watch": "webpack --watch --mode=development",
+      "build": "webpack --mode=production"
+    },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dingtianding/JS_Project.git"
@@ -24,6 +26,15 @@
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
-    "lodash": "^4.17.21"
+    "@babel/core": "^7.17.2",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.3",
+    "core-js": "^3.21.0",
+    "css-loader": "^6.6.0",
+    "lodash": "^4.17.21",
+    "mini-css-extract-plugin": "^2.5.3",
+    "regenerator-runtime": "^0.13.9",
+    "sass": "^1.49.7",
+    "sass-loader": "^12.4.0"
   }
 }

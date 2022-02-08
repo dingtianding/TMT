@@ -2,11 +2,15 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./dist/main.css" />
+    <script src="./dist/main.js"></script>
     <title>Tesla, Media and Tweets</title>
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="src/styles/index.css"/>
   </head>
   <body>
     <form class="search" action="">
@@ -78,7 +82,7 @@
             const xs = [];
             const ys = [];
             
-            const response = await fetch('TSLA.csv');
+            const response = await fetch('stuff/TSLA.csv');
             const data = await response.text();
             
 
@@ -96,7 +100,7 @@
 
     </script>
 
-      <script> 
+      <!-- <script> 
           const searchFrom = document.querySelector('.search');
           const input = document.querySelector('.input');
           const prices = document.querySelector('.prices');
@@ -127,7 +131,7 @@
               console.log(error)
             })
           }
-        </script>
+        </script> -->
 
     
 
