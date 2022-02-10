@@ -1,10 +1,11 @@
-html {background-color: rgba(0, 0, 0, 0.69)}
+html {background-color:#1F2937}
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     list-style: none;
+    
 }
    
 body {
@@ -13,8 +14,11 @@ body {
     margin: 0;
     text-align: center;
     font-family: 'Roboto', arial;
+    
 }
-
+h5{
+    font-size: 50px;
+}
 title{
     color:white
 }
@@ -24,9 +28,10 @@ title{
 }
 .news-list {
    background-color:ivory;
+   font-size: 16px;
 }
 .news-list-header {
-    color: mintcream;
+    color:black;
  }
 
  .reddits-list {
@@ -44,7 +49,7 @@ title{
 .navbar {
     display: flex;
     color: #F9FAF8;
-    background-color: #1F2937;
+    background-color: #000000;
     padding: 20px 0px 20px 100px;
     align-items: center;
 }
@@ -91,4 +96,10 @@ title{
     font-size: 12px;
     font-family: 'Roboto', arial;
     height: 20px;
+}
+
+span{
+    font-size: 18px;
+    font-style: oblique;
+    font-style: italic;
 }
