@@ -3,13 +3,25 @@
   "version": "1.0.0",
   "description": "JS Project Proposal: Tesla, Media and Tweets(TMT)",
   "main": "index.js",
-    "browserslist": [
-      "defaults"
-    ],
+  "browserslist": [
+    "defaults"
+  ],
+    "engines": {
+      "node": "14.x" // use your version of node; check with `node -v`
+    },
     "scripts": {
+      "start": "node app.js", // runs server
+      "start:debug": "node --inspect app.js", // server with debuggers 
       "watch": "webpack --watch --mode=development",
       "build": "webpack --mode=production"
-    },
+    }
+  }
+  "scripts": {
+    "start": "node app.js", // runs server
+    "start:debug": "node --inspect app.js", // server with debuggers 
+    "watch": "webpack --watch --mode=development",
+    "build": "webpack --mode=production"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dingtianding/JS_Project.git"
@@ -31,8 +43,11 @@
     "babel-loader": "^8.2.3",
     "core-js": "^3.21.0",
     "css-loader": "^6.6.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
     "lodash": "^4.17.21",
     "mini-css-extract-plugin": "^2.5.3",
+    "node-fetch": "^3.2.0",
     "regenerator-runtime": "^0.13.9",
     "sass": "^1.49.7",
     "sass-loader": "^12.4.0"
