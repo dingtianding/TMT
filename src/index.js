@@ -1,3 +1,4 @@
+// import reddit from './scripts/reddit';
 
 // const searchFrom = document.querySelector('.search');
 // const input = document.querySelector('.input');
@@ -25,4 +26,3 @@
 //       el.preventDefault();
 
 // })
-

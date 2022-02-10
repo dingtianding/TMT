@@ -5,37 +5,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <link rel="stylesheet" href="./dist/main.css" />
     <script src="./dist/main.js"></script>
-<!-- chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+    <link rel="stylesheet" href="./src/styles/index.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    
     <title>Tesla, Media and Tweets</title>
   </head>
-  <body> 
 
 
-    <form class="search" action="">
-      <label for="">Stock Search</label>
-      <input class="input" type="text" id="stock" value="Tesla"/>
-      <input type="submit" value="Search" />
-    </form>
-    <h1 id='myHeader'></h1>
-    <script>
-      const stockName = document.getElementById("stock").value;
-    document.getElementById("myHeader").textContent = `Stock Name: ${stockName} (TSLA) `
-    </script>
-
-    <script src="./dist/main.js"></script>
+  <body>
+    <div class="container">
+            
+      <nav class="bx navbar">
+          <div class="header-logo">
+              <img src="src/images/doge.jpeg">
+              <h1 class="title">Tesla, Media and Tweets?</h1>
+          </div>
+          <div class="header-link">
+              <a href="https://github.com/dingtianding/">Github</a>
+              <a href="https://www.linkedin.com/in/deanding/">Linkedin</a>
+              <a href="dingtian.ding@gmail.com">Email</a>                    
+          </div>
+      </nav>
+  
     
+    <div id="search-container" class="container">
+      <div id="search" class="card card-body bg-light mb-2">
+        <h4>Stock Search</h4>
+        <form class="search" action="">
+          <label for=""></label>
+          <input class="input" type="text" id="stock" placeholder="Stock Name..."/>
+          <input type="submit" value="Search" />
+        </form>
+        <form id="search-form">
+          <div class="form-group">
+            <input type="text" id="search-input" class="input" placeholder="Search Term...">
+          </div>
+          <div class="form-check form-check-inline">
+            Sort By:
+            <input class="input" type="radio" name="sortby" value="relevance" checked>
+            <label class="form-check-label">
+              Hot
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sortby" value="new">
+            <label class="form-check-label">
+              Relevance
+            </label>
+          </div>
+          <h5 class="mt-2">Limit: </h5>
+          <div class="form-group">
+            <select name="limit" id="limit" class="input">
+              <option value="5">5</option>
+              <option value="20" selected>20</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-dark btn-block mt-4">Search</button>
+        </form>
+      </div>
+      <div id="results"></div>
+    </div>
+ 
+    <div class="container">
+      <h2 class="news-list-header">Current Events</h2>
+      <ul class="news-list"></ul>
+    </div>
+    <div class="container">
+      <h2 class="reddits-list-header">Reddits</h2>
+      <ul class="reddits-list"></ul>
+    </div>
     <canvas id="myChart" width="400" height="300"></canvas>
     <script>
+      const searchFrom = document.querySelector('.search');
+      const input = document.querySelector('.input');
+      const newsList = document.querySelector('.news-list');
+
+      searchFrom.addEventListener('submit', getNews)
+      searchFrom.addEventListener('submit', createChart)
+
+
+      function getNews(el){
+        if (input.value ===''){
+          alert('Please enter a stock!')
+          return
+        }
+        newsList.innerHTML = ''
+        el.preventDefault()
+        const apiKey = '9803bf19a56d4f2784a06878e6855667'
+        let topic = input.value;
+        let url = `https://newsapi.org/v2/everything?q=${topic}&apiKey=${apiKey}`
+
+        fetch(url).then((res)=>{
+          return res.json()
+        }).then((data)=>{
+        
+          data.articles.forEach(article => {
+            let li = document.createElement('li');
+            let a = document.createElement('a');
+            a.setAttribute('href', article.url);
+            a.setAttribute('target', '_blank')
+            a.textContent = article.title
+            li.appendChild(a);
+            newsList.appendChild(li);
+          })
+        }).catch((error)=>{
+          console.log(error)
+        })
+      }
         const xdates = [];
         const yprices = [];
-        createChart();
+        // searchFrom.addEventListener('submit', createChart())
+        // createChart();
 
         async function createChart() {
         const data = await getData();
@@ -104,12 +188,11 @@
 
     </script>
 
-      <script> 
-          const searchFrom2 = document.querySelector('.search');
-          // const input = document.querySelector('.input');
+      <!-- <script> 
+
           const prices = document.querySelector('.prices');
     
-          searchFrom2.addEventListener('submit', getPrice)
+          searchFrom.addEventListener('submit', getPrice)
     
           function getPrice(el){
             if (input.value ===''){
@@ -123,11 +206,11 @@
             let url = `https://api.twelvedata.com/time_series?symbol=${stock}",EUR/USD,ETH/BTC:Huobi,TRP:TSX&interval=1day&apikey=${apiKey}`
     
             fetch(url).then((res)=>{
-              console.log(data)
+              console.log(res)
               return res.json()
             }).then((data)=>{
               
-              data.TSLA.values.forEach(daily => {
+              data.values.forEach(daily => {
                 console.log(daily, data.open)
                 
               })
@@ -137,126 +220,13 @@
           }
 
           
-        </script>
+        </script> -->
 
     
 
-    <div class="container">News
-      <ul class="news-list"></ul>
-    </div>
-    <script>
-      const searchFrom = document.querySelector('.search');
-      const input = document.querySelector('.input');
-      const newsList = document.querySelector('.news-list');
-
-      searchFrom.addEventListener('submit', getNews)
-
-      function getNews(el){
-        if (input.value ===''){
-          alert('Please enter a stock!')
-          return
-        }
-        newsList.innerHTML = ''
-        el.preventDefault()
-        const apiKey = '9803bf19a56d4f2784a06878e6855667'
-        let topic = input.value;
-        let url = `https://newsapi.org/v2/everything?q=${topic}&apiKey=${apiKey}`
-
-        fetch(url).then((res)=>{
-          return res.json()
-        }).then((data)=>{
-        
-          data.articles.forEach(article => {
-            let li = document.createElement('li');
-            let a = document.createElement('a');
-            a.setAttribute('href', article.url);
-            a.setAttribute('target', '_blank')
-            a.textContent = article.title
-            li.appendChild(a);
-            newsList.appendChild(li);
-          })
-        }).catch((error)=>{
-          console.log(error)
-        })
-      }
-    </script>
+<div class="bx footer">
+  <p>A Current Events Getter by Dean</p>
+</div>
     
-    <div id="search-container" class="container">
-      <div id="search2">
-        Reddit
-        <!-- <h4>Search Reddit</h4> -->
-        <form id="search-form">
-          <div class="form-group">
-            <input type="text" id="search-input"  value="Tesla">
-          </div>
-          <div class="form-check form-check-inline">
-            Sort By:
-            <input class="form-check-input ml-2" type="radio" name="sortby" value="relevance" checked>
-            <label class="form-check-label">
-              Relevance
-            </label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="sortby" value="hot">
-            <label class="form-check-label">
-              Hot
-            </label>
-          </div>
-          <!-- <h5 class="mt-2">Limit: </h5>
-          <div class="form-group">
-            <select name="limit" id="limit" class="form-control">
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="25" selected>25</option>
-              <option value="50">50</option>
-              <option value="100">100</option>
-            </select>
-          </div> -->
-          <button type="submit" class="btn btn-dark btn-block mt-4">Search</button>
-        </form>
-      </div>
-      <div id="results"></div>
-    </div>
-
-    <div class="container">Reddit
-      <ul class="posts-list"></ul>
-    </div>
-    <script>
-      const searchForm = document.getElementById('search-form');
-      const searchInput = document.getElementById('search-input');
-      const postsList = document.querySelector('.posts-list');
-
-      searchForm.addEventListener('submit', search)
-
-      function search(el){
-        if (searchInput.value ===''){
-          alert('Please enter a stock!')
-          return
-        }
-        searchInput.value = '';
-        el.preventDefault()
-        let searchTerm = searchInput.value;
-        let url = `http://www.reddit.com/search.json?q=${searchTerm}&sort=hot&limit=20`
-
-        fetch(url).then((res)=>{
-          console.log(url)
-          return res.json()
-        }).then((data)=>{
-          data.data.children.forEach(post => {
-            let li = document.createElement('li');
-            let a = document.createElement('a');
-            a.setAttribute('href', post.url);
-            a.setAttribute('target', '_blank')
-            a.textContent = post.title
-            li.appendChild(a);
-            postsList.appendChild(li);
-          })
-        }).catch((error)=>{
-          console.log(error)
-        })
-      }
-    </script>
-
-    <script src="./src/index.js"></script>
 </body>
 </html>
