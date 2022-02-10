@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
     <link rel="stylesheet" href="./src/styles/index.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <title>Tesla, Media and Tweets</title>
   </head>
 
@@ -35,30 +35,43 @@
         <h4>Stock Search</h4>
         <form class="search" action="">
           <label for=""></label>
-          <input class="input" type="text" id="stock" placeholder="Stock Name..."/>
+          <input class="input" type="text" id="stock" placeholder="Stock Ticker..."/>
           <input type="submit" value="Search" />
         </form>
         <form id="search-form">
           <div class="form-group">
-            <input type="text" id="search-input" class="input" placeholder="Search Term...">
+            <input type="text" id="search-input" class="input" placeholder="Stock Name...">
           </div>
           <div class="form-check form-check-inline">
             Sort By:
             <input class="input" type="radio" name="sortby" value="relevance" checked>
             <label class="form-check-label">
-              Hot
+              Relevance
             </label>
           </div>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="sortby" value="new">
             <label class="form-check-label">
-              Relevance
+              New
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sortby" value="top">
+            <label class="form-check-label">
+              Top
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sortby" value="random">
+            <label class="form-check-label">
+              Random
             </label>
           </div>
           <h5 class="mt-2">Limit: </h5>
           <div class="form-group">
             <select name="limit" id="limit" class="input">
               <option value="5">5</option>
+              <option value="50">10</option>
               <option value="20" selected>20</option>
               <option value="50">50</option>
               <option value="100">100</option>
@@ -67,18 +80,16 @@
           <button type="submit" class="btn btn-dark btn-block mt-4">Search</button>
         </form>
       </div>
-      <div id="results"></div>
+      
     </div>
  
     <div class="container">
       <h2 class="news-list-header">Current Events</h2>
       <ul class="news-list"></ul>
     </div>
-    <div class="container">
-      <h2 class="reddits-list-header">Reddits</h2>
-      <ul class="reddits-list"></ul>
-    </div>
+    
     <canvas id="myChart" width="400" height="300"></canvas>
+    <div id="results"></div>
     <script>
       const searchFrom = document.querySelector('.search');
       const input = document.querySelector('.input');
@@ -97,6 +108,9 @@
         el.preventDefault()
         const apiKey = '9803bf19a56d4f2784a06878e6855667'
         let topic = input.value;
+        if (input.value ==='TSLA'){
+          topic = "Tesla"
+        }
         let url = `https://newsapi.org/v2/everything?q=${topic}&apiKey=${apiKey}`
 
         fetch(url).then((res)=>{
@@ -185,6 +199,91 @@
             });
             return { xs, ys }
         }
+const searchForm = document.getElementById('search-form');
+const searchBtn = document.getElementById('search-btn');
+const searchInput = document.getElementById('search-input');
+
+searchForm.addEventListener('submit', e => {
+  // Get sort
+  const sortBy = document.querySelector('input[name="sortby"]:checked').value;
+  // Get limit
+  const searchLimit = document.getElementById('limit').value;
+  // Get search
+  const searchTerm = searchInput.value;
+  // Check for input
+  if (searchTerm == '') {
+    // Show message
+    showMessage('Please add a search term', 'alert-danger');
+  }
+  // Clear field
+  searchInput.value = '';
+
+  // Search Reddit
+  search(searchTerm, searchLimit, sortBy).then(results => {
+    let output = '<div class="card-columns"><h1 color="white">Reddit<h1>';
+    console.log(results);
+    results.forEach(post => {
+      // Check for image
+      let image = post.preview
+        ? post.preview.images[0].source.url
+        : 'https://cdn.comparitech.com/wp-content/uploads/2017/08/reddit-1.jpg';
+        output += `
+      <div class="card mb-2">
+      <img class="card-img-top" src="${image}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">${post.title}</h5>
+        <p class="card-text">${truncateString(post.selftext, 100)}</p>
+        <a href="${post.url}" target="_blank
+        " class="btn btn-primary">Read More</a>
+        <hr>
+        <span class="badge badge-secondary">Subreddit: ${post.subreddit}</span> 
+        <span class="badge badge-dark">Score: ${post.score}</span>
+      </div>
+    </div>
+      `;
+    });
+    output += '</div>';
+    document.getElementById('results').innerHTML = output;
+  });
+  function search(searchTerm, searchLimit, sortBy) {
+    return fetch(
+      `http://www.reddit.com/search.json?q=${searchTerm}&sort=${sortBy}&limit=${searchLimit}`
+    )
+      .then(res => res.json())
+      .then(data => {
+        return data.data.children.map(data => data.data);
+      })
+      .catch(err => console.log(err));
+  }
+  e.preventDefault();
+});
+
+// Show Message Function
+function showMessage(message, className) {
+  // Create div
+  const div = document.createElement('div');
+  // Add classes
+  div.className = `alert ${className}`;
+  // Add text
+  div.appendChild(document.createTextNode(message));
+  // Get parent
+  const searchContainer = document.getElementById('search-container');
+  // Get form
+  const search = document.getElementById('search');
+
+  // Insert alert
+  searchContainer.insertBefore(div, search);
+
+
+
+}
+
+// Truncate String Function
+function truncateString(myString, limit) {
+  const shortened = myString.indexOf(' ', limit);
+  if (shortened == -1) return myString;
+  return myString.substring(0, shortened);
+}
 
     </script>
 

@@ -1,4 +1,4 @@
-html {background-color: rgba(0, 0, 0, 0.88)}
+html {background-color: rgba(0, 0, 0, 0.69)}
 
 *{
     margin: 0;
@@ -15,9 +15,13 @@ body {
     text-align: center;
     font-family: 'Roboto', arial;
 }
+
+title{
+    color:white
+}
 .container {
     display: flex;
-    flex-direction: column;
+    flex-direction:column;
 }
 .news-list {
    background-color:ivory;
@@ -76,10 +80,10 @@ body {
 
 
 .search{
-    position:;
+    position:relative
     top: 0x;
-    left: 50px;
-    float:left;
+    left: 0px;
+ 
 
 }
 .footer {
