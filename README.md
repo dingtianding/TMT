@@ -1,5 +1,7 @@
 # H1 JS Project Proposal: Tesla, Media and Tweets(TMT)
-https://dingtianding.github.io/JS_Project/
+Live Link : https://dingtianding.github.io/JS_Project/
+
+
 --Background--
 Tesla, Media and Tweets(TMT) is a data visualization project that creates a stock chart of a popular stock, and attempts to analyze direct and indirect relationship between current events as well as the CEO's twitter acitivty. The site will visualize Stock prices, and it will collect list of major events from media and Elon Musk Tweets. The graph will be marked differently according the type of current events and there will be filter for events types. It will create a ranking of the most significant events while incorporating some simple price analysis.
 
