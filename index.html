@@ -21,7 +21,7 @@
       <nav class="navbar">
           <div class="header-logo">
               <img src="src/images/doge.jpeg">
-              <h1 class="title">Tesla, Media and <s>Tweets</s> Reddits</h1>
+              <h1 class="title">Tesla, Media and Tweets</h1>
               
           </div>
           <div class="header-link">
@@ -40,11 +40,11 @@
     
     <div id="search-container" class="container">
       <div id="search" class="card card-body bg-light mb-2">
-        <h4>Stock Search</h4>
+        <h4>Stock Price</h4>
         <form class="search" action="">
           <label for=""></label>
           <!-- <input class="input" type="text" id="stock" placeholder="Stock Ticker..." value="TSLA"/> -->
-          <input type="submit" value="Get Prices" />
+          <input type="submit" value="Get Price" />
         </form>
         <form id="search-form">
           <h4>Reddit Search</h4>
@@ -95,27 +95,13 @@
     
     
     <canvas id="myChart" width="400" height="300"></canvas>
-
-    <div class="current_events">
-      <div class="news">
-          <div class="card mb-2">
-            <div class="card-body">
-              <h2 class="news-list-header">Current Events</h2>
-              <ul class="news-list"></ul>
-            </div>
-          </div>
-      </div>
-
-      <div class="reddits">
-        <div class="card mb-2">
-          <div class="card-body">
-            <h2 class="news-list-header">Reddit</h2>
-            <div id="results"></div>
-          </div>
-        </div>
+    <div class="card mb-2">
+      <div class="card-body">
+        <h2 class="news-list-header">Current Events</h2>
+        <ul class="news-list"></ul>
       </div>
     </div>
-
+    <div id="results"></div>
     <script>
       const searchFrom = document.querySelector('.search');
       const input = document.querySelector('.input');
@@ -133,8 +119,10 @@
         newsList.innerHTML = ''
         el.preventDefault()
         const apiKey = '9803bf19a56d4f2784a06878e6855667'
-        let topic = "Tesla";
-
+        let topic = input.value;
+        if (input.value ==='TSLA'){
+          topic = "Tesla"
+        }
         let url = `https://newsapi.org/v2/everything?q=${topic}&apiKey=${apiKey}`
 
         fetch(url).then((res)=>{
@@ -200,6 +188,7 @@
             ctx.restore();
         }
     };
+        //Data from https://finance.yahoo.com/quote/TSLA/history/
         
         getData();
         async function getData(){
@@ -228,7 +217,7 @@ searchForm.addEventListener('submit', e => {
 
   const sortBy = document.querySelector('input[name="sortby"]:checked').value;
   const searchLimit = document.getElementById('limit').value;
-  const searchTerm = "tesla";
+  const searchTerm = searchInput.value;
 
   if (searchTerm == '') {
     alert('Please enter a stock!')
@@ -274,7 +263,7 @@ searchForm.addEventListener('submit', e => {
 
 
     </script>
-
+    
 
 
 
