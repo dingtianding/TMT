@@ -21,7 +21,7 @@
       <nav class="navbar">
           <div class="header-logo">
               <img src="src/images/doge.jpeg">
-              <h1 class="title">Tesla, Media and <s>Tweets</s> Reddit</h1>
+              <h1 class="title">Tesla, Media and <s>Tweets</s> Reddits</h1>
               
           </div>
           <div class="header-link">
@@ -43,8 +43,8 @@
         <h4>Stock Search</h4>
         <form class="search" action="">
           <label for=""></label>
-          <input class="input" type="text" id="stock" placeholder="Stock Ticker..." value="TSLA"/>
-          <input type="submit" value="Search" />
+          <!-- <input class="input" type="text" id="stock" placeholder="Stock Ticker..." value="TSLA"/> -->
+          <input type="submit" value="Get Prices" />
         </form>
         <form id="search-form">
           <h4>Reddit Search</h4>
@@ -95,13 +95,27 @@
     
     
     <canvas id="myChart" width="400" height="300"></canvas>
-    <div class="card mb-2">
-      <div class="card-body">
-        <h2 class="news-list-header">Current Events</h2>
-        <ul class="news-list"></ul>
+
+    <div class="current_events">
+      <div class="news">
+          <div class="card mb-2">
+            <div class="card-body">
+              <h2 class="news-list-header">Current Events</h2>
+              <ul class="news-list"></ul>
+            </div>
+          </div>
+      </div>
+
+      <div class="reddits">
+        <div class="card mb-2">
+          <div class="card-body">
+            <h2 class="news-list-header">Reddit</h2>
+            <div id="results"></div>
+          </div>
+        </div>
       </div>
     </div>
-    <div id="results"></div>
+
     <script>
       const searchFrom = document.querySelector('.search');
       const input = document.querySelector('.input');
@@ -214,7 +228,7 @@ searchForm.addEventListener('submit', e => {
 
   const sortBy = document.querySelector('input[name="sortby"]:checked').value;
   const searchLimit = document.getElementById('limit').value;
-  const searchTerm = searchInput.value;
+  const searchTerm = "tesla";
 
   if (searchTerm == '') {
     alert('Please enter a stock!')
@@ -261,9 +275,7 @@ searchForm.addEventListener('submit', e => {
 
     </script>
 
-<div class="bx footer">
-  <p>A Current Events Getter by Dean</p>
-</div>
+
 
 
 
