@@ -1,4 +1,4 @@
-## JS Project Proposal: Tesla, Media and Tweets(TMT)
+## JS Project Proposal: Tesla, Media and ~~Tweets~~Reddit(TMT)
 Live Link : https://dingtianding.github.io/TMT/
 
 
