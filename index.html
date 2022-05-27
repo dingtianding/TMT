@@ -21,7 +21,7 @@
       <nav class="navbar">
           <div class="header-logo">
               <img src="src/images/doge.jpeg">
-              <h1 class="title">Tesla, Media and Tweets?</h1>
+              <h1 class="title">Tesla, Media and <s>Tweets</s> Reddit</h1>
               
           </div>
           <div class="header-link">
@@ -43,8 +43,8 @@
         <h4>Stock Search</h4>
         <form class="search" action="">
           <label for=""></label>
-          <input class="input" type="text" id="stock" placeholder="Stock Ticker..." value="TSLA"/>
-          <input type="submit" value="Search" />
+          <!-- <input class="input" type="text" id="stock" placeholder="Stock Ticker..." value="TSLA"/> -->
+          <input type="submit" value="Get Price" />
         </form>
         <form id="search-form">
           <h4>Reddit Search</h4>
@@ -86,7 +86,7 @@
               <option value="100">100</option>
             </select>
           </div>
-          <button type="submit">Search</button>
+          <button type="submit">Get News</button>
         </form>
       </div>
       
@@ -119,10 +119,8 @@
         newsList.innerHTML = ''
         el.preventDefault()
         const apiKey = '9803bf19a56d4f2784a06878e6855667'
-        let topic = input.value;
-        if (input.value ==='TSLA'){
-          topic = "Tesla"
-        }
+        let topic = "Tesla";
+
         let url = `https://newsapi.org/v2/everything?q=${topic}&apiKey=${apiKey}`
 
         fetch(url).then((res)=>{
@@ -144,8 +142,7 @@
       }
         const xdates = [];
         const yprices = [];
-        // searchFrom.addEventListener('submit', createChart())
-        // createChart();
+
 
         async function createChart() {
         const data = await getData();
@@ -169,7 +166,6 @@
             scales: {
             y: {
                 ticks: {
-                    // Include a dollar sign in the ticks
                     callback: function(value, index, ticks) {
                         return '$' + value;
                     }
@@ -190,7 +186,6 @@
             ctx.restore();
         }
     };
-        //Data from https://finance.yahoo.com/quote/TSLA/history/
         
         getData();
         async function getData(){
@@ -219,7 +214,7 @@ searchForm.addEventListener('submit', e => {
 
   const sortBy = document.querySelector('input[name="sortby"]:checked').value;
   const searchLimit = document.getElementById('limit').value;
-  const searchTerm = searchInput.value;
+  const searchTerm = "Tesla";
 
   if (searchTerm == '') {
     alert('Please enter a stock!')
@@ -265,42 +260,6 @@ searchForm.addEventListener('submit', e => {
 
 
     </script>
-
-      <!-- <script> 
-
-          const prices = document.querySelector('.prices');
-    
-          searchFrom.addEventListener('submit', getPrice)
-    
-          function getPrice(el){
-            if (input.value ===''){
-              alert('Please enter a stock!')
-              return
-            }
-            // prices.innerHTML = ''
-            el.preventDefault()
-            const apiKey = 'd8c13c0a3ba84770b416e30869d97d6f'
-            let stock = input.value;
-            let url = `https://api.twelvedata.com/time_series?symbol=${stock}",EUR/USD,ETH/BTC:Huobi,TRP:TSX&interval=1day&apikey=${apiKey}`
-    
-            fetch(url).then((res)=>{
-              console.log(res)
-              return res.json()
-            }).then((data)=>{
-              
-              data.values.forEach(daily => {
-                console.log(daily, data.open)
-                
-              })
-            }).catch((error)=>{
-              console.log(error)
-            })
-          }
-
-          
-        </script> -->
-
-    
 
 <div class="bx footer">
   <p>A Current Events Getter by Dean</p>
