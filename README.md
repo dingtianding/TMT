@@ -11,16 +11,15 @@ Update: Due to issue with the Twitter API and News API is now paid, Reddit API i
 With the TMT, users will be able to:
 
 1. Observe Tesla's stock price in chart over a period of time
-2. Select the type of factors(events or tweets) to be marked up on the chart
-3. Rank the biggest gainer and loser dates and link to the events or tweets on the dates.
+2. Obtain the latest current events via a News API.
+3. 
 
 In addition, this project will include:
 
 An About modal describing the consideration when determining current events's impact on the stock price.
 A production README
 
---Wireframes--
-![Wireframe](https://github.com/dingtianding/JS_Project/blob/main/src/images/WireFrame.jpeg)
+
 
 
 Nav links include links to this project's Github repo, my LinkedIn and AngelList, and the About modal.
@@ -32,30 +31,26 @@ On the left, three clickable shapes will be used to toggle between the types of 
 --Technologies, Libraries, APIs--
 This project will be implemented with the following technologies:
 
-The IEX Cloud API to pull market datas for the stock
-The Chart.js API to render the stock chart
+- **JavaScript**: Overall project was built with JavaScript, following are some highlights:
+
+  - Fetch and Promises: manage asynchronous operation from multiple APIs and its resulting value.
+  - Document Object Model(DOM) for element manipulations.
+  - EventTarget: objects that can receive events and may have listeners for them.
+  - Modals: dialog box/popup window that is displayed on top of the current page.
+
+- **D3.js library**: Render dynamic and interactive charts upon every new search.
+
     -Chart.js also uses Fetch API for accessing and manipulating parts of the HTTP pipeline, and to create a synchronous functions
     -Chart.js Use Canvas API to draw graphic in conjunction customize graph
-Webpack to bundle and transpile the source JavaScript code
-npm to manage project dependencies
 
---Implementation Timeline--
-NB:
+- **IEXcloud and FinHub APIs**: - stock data APIs for stock data including histirical price, analyst recommendations and earnings.
 
-Friday Afternoon & Weekend: Setup project, including getting webpack up and running. Get sample charts to show up on the screen with chart.js and d3. Spend time getting comfortable with the IEX Cloud API, and try to pull some market data in order to decide what to include on the stock page.
+- **HTML and CSS**: for web structure and styling.
 
-Monday: Dedicate this day toward implementing the Market Data properly on the chart visualization, and add any additional relative market data. Implement a professional visual of the chart and make it pretty.
+- **Webpack**: for bundle JavaScript files.
 
-Tuesday: Compile list of current events related to the stock with maybe a News Search API and CEO tweets. Create link to relevent News article or specific tweets and create mark up on the chart.
+- **NPM**: to manage project dependencies.
 
-Wednesday: Finish implementing current event's mark up if I have not finished. Then to create a page to rank the Biggest Gainer and Loser dates and the respective events that has occured.
+---
 
-Thursday Morning: Deploy to GitHub pages. If time, rewrite this proposal as a production README.
 
--- Bonus features --
-There are many directions this stock visualization could eventually go. Some anticipated updates are:
-
-Add options for other stocks and maybe even to pull CyptoCoins Prices
-Automatically dentify major increase or major decrease in price.(+/-10%)
-Filter for current events that occured on those dates.
-Set up criteria for stock's risk rating similar to S&P and Moody's. 
